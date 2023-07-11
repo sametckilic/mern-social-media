@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"npm nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sametckilic/mern-social-media.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sametckilic/mern-social-media/issues"
+  },
+  "homepage": "https://github.com/sametckilic/mern-social-media#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
