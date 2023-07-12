@@ -29,7 +29,20 @@ const UserSchema = new mongoose.Schema({
     coverPicturePath:{
         type: String,
         default: ""
-    }
+    },
+    friends: {
+        type: Array,
+        defult: []
+    },
+    locaiton: String,
+    viewedProfile: {
+        type: Number,
+        default: 0
+    },
+    
 
+},{timestamps: true})
 
-})
+const User = mongoose.model("User", UserSchema);
+
+export default User;
