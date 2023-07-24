@@ -42,36 +42,33 @@ export const getUserFriends = async (req, res) => {
 
 // update 
 
-export const addRemoveFriends = async (req, res) => {
+export const addRemoveFriend = async (req, res) => {
     try {
         const { id, friendId } = req.params;
         const user = await User.findById(id);
         const friend = await User.findById(friendId);
 
         if (user.friends.includes(friendId)) {
-            
+
             user.friends = user.friends.filter((id) => id !== friendId);
             friend.friends = friend.friends.filter((id) => id !== id);
-            
+            await user.save();
+            await friend.save();
+            const { id, firstName, lastName, picturePath, coverPicturePath } = friend;
+            const removedFriend = { id, firstName, lastName, picturePath, coverPicturePath }
+            res.status(200).json(removedFriend);
+
         }
-        else{
+        else {
             user.friends.push(friendId);
-            user.friends.push(id);
+            friend.friends.push(id);
+            await user.save();
+            await friend.save();
+            const { _id, firstName, lastName, picturePath, coverPicturePath } = friend;
+            const addedFriend = { _id, firstName, lastName, picturePath, coverPicturePath }
+            res.status(200).json(addedFriend);
         }
-        await user.save();
-        await friend.save();
 
-        const friends = await Promise.all(
-            user.friends.map(
-                (friendsId) => User.findById(friendsId)
-            ))
-
-        const formattedFriends = friends.map(
-            ({ id, firstName, lastName, picturePath, coverPicturePath }) => {
-                return { id, firstName, lastName, picturePath, coverPicturePath }
-            }
-        )
-        res.status(200).json(formattedFriends);
     }
 
     catch (err) {

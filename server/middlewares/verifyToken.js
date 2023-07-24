@@ -18,3 +18,14 @@ export const verifyToken = async (req, res, next) => {
         res.status(500).json({error: err.message});
     }
 }
+
+export const verifyTokenAndAuth = (req, res, next) => {
+    verifyToken(req, res, ()=>{
+        if(req.user.id === req.params.id) {
+            next();
+        }
+        else{
+            res.status(403).json("You are not allowed to do that!");
+        }
+    });
+}

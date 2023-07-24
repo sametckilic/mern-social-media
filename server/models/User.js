@@ -22,11 +22,11 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required:true
     },
-    picturePath: {
+    pictureBase: {
         type: String,
         default: ""
     },
-    coverPicturePath:{
+    coverPictureBase:{
         type: String,
         default: ""
     },
