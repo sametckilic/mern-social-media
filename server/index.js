@@ -3,6 +3,7 @@ import  connection  from "./config/dbConnect.js";
 import dotenv from "dotenv";
 import { register } from "./controllers/auth.js"
 import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/user.js";
 dotenv.config();
 
 const app = express();
@@ -15,7 +16,7 @@ app.use(express.json());
 connection();
 
 // routes
-
+app.use("/", userRoutes);
 app.use("/auth", authRoutes)
 
 // start
