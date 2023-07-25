@@ -1,6 +1,6 @@
 import express from "express";
 import { getUser, getUserFriends, addRemoveFriend } from "../controllers/users.js";
-import { verifyToken } from "../middlewares/verifyToken.js";
+import { verifyToken , verifyTokenAndAuth } from "../middlewares/verifyToken.js";
 
 
 const router = express.Router();
@@ -12,7 +12,7 @@ router.get("/:id/friends", verifyToken, getUserFriends)
 
 // update
 
-router.patch("/:id/:friendId", verifyToken, addRemoveFriend)
+router.patch("/:id/:friendId", verifyTokenAndAuth, addRemoveFriend)
 
 
 export default router;

@@ -21,7 +21,7 @@ export const verifyToken = async (req, res, next) => {
 
 export const verifyTokenAndAuth = (req, res, next) => {
     verifyToken(req, res, ()=>{
-        if(req.user.id === req.params.id) {
+        if(req.user.id === req.params.id || req.user.id === req.body.userId) {
             next();
         }
         else{

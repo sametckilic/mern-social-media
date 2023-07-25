@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser"; 
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/user.js";
+import postRoutes from  "./routes/post.js";
 dotenv.config();
 
 const app = express();
@@ -20,8 +21,9 @@ app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:500
 connection();
 
 // routes
-app.use("/", userRoutes);
+app.use("/users", userRoutes);
 app.use("/auth", authRoutes)
+app.use("/post", postRoutes);
 
 // start
 const PORT = process.env.PORT || 6000;

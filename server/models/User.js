@@ -34,7 +34,7 @@ const UserSchema = new mongoose.Schema({
         type: Array,
         defult: []
     },
-    location: String,
+    location: Object,
     viewedProfile: {
         type: Number,
         default: 0

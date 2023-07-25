@@ -54,9 +54,12 @@ export const addRemoveFriend = async (req, res) => {
             friend.friends = friend.friends.filter((id) => id !== id);
             await user.save();
             await friend.save();
-            const { id, firstName, lastName, picturePath, coverPicturePath } = friend;
-            const removedFriend = { id, firstName, lastName, picturePath, coverPicturePath }
-            res.status(200).json(removedFriend);
+            const { id, firstName, lastName, pictureBase, coverPictureBase } = friend;
+            const removedFriend = { id, firstName, lastName, pictureBase, coverPictureBase }
+            res.status(200).json({
+                removedFriend: removedFriend,
+                message: `${firstName} was removed successfully`
+            });
 
         }
         else {
@@ -64,9 +67,12 @@ export const addRemoveFriend = async (req, res) => {
             friend.friends.push(id);
             await user.save();
             await friend.save();
-            const { _id, firstName, lastName, picturePath, coverPicturePath } = friend;
-            const addedFriend = { _id, firstName, lastName, picturePath, coverPicturePath }
-            res.status(200).json(addedFriend);
+            const { _id, firstName, lastName, pictureBase, coverPictureBase } = friend;
+            const addedFriend = { _id, firstName, lastName, pictureBase, coverPictureBase }
+            res.status(200).json({
+                addedFriend: addedFriend,
+                message: `${firstName} added successfully`
+            });
         }
 
     }
